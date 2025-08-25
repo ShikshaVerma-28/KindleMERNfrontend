@@ -61,7 +61,7 @@ const Page = () => {
             <Navbar />
             <div className={styles.container}>
                 <div className={styles.imageContainer}>
-                    <Image src={book.image} alt={book.title} className={styles.bookImage} />
+                    <Image src={book.image} alt={book.title} width={200} height={300} className={styles.bookImage} />
                 </div>
                 <div className={styles.details}>
                     <h1 className={styles.bookTitle}>{book.title}</h1>
@@ -91,5 +91,6 @@ const Page = () => {
         </div>
     )
 }
+
 
 export default Page
