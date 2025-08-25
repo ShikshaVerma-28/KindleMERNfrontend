@@ -104,6 +104,8 @@ const Page = () => {
                                 <Image
                                     src={book.image}
                                     alt={book.title}
+                                    width={200}
+                                    height={300}
                                     className={styles.bookImage}
                                 />
                                 <div className={styles.bookDetails}>
@@ -122,3 +124,4 @@ const Page = () => {
 
 
 export default Page;
+
