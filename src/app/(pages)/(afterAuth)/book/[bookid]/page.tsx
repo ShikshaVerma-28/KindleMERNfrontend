@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '@/components/Navbar'
 import styles from './Book.module.css'
 import Image from 'next/image'
-// import { useParams } from 'next/navigation';
 import { useRouter,useParams } from 'next/navigation';
 
 
@@ -28,9 +27,14 @@ const Page = () => {
     useEffect(() => {
         const fetchBook = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/books/${bookid}`);
+                // CORRECTED: Changed the port from 5000 to 10000
+                const response = await fetch(`http://localhost:10000/api/books/${bookid}`);
                 if (!response.ok) {
-                    throw new Error('Failed to fetch book data');
+                    // Check for 404 Not Found specifically
+                    if (response.status === 404) {
+                        throw new Error('Book not found.');
+                    }
+                    throw new Error('Failed to fetch book data. Server error.');
                 }
                 const data = await response.json();
                 setBook(data);
@@ -42,8 +46,12 @@ const Page = () => {
                 setLoading(false);
             }
         }
-        fetchBook()
-    }, [bookid])
+        
+        // Ensure bookid is available before fetching
+        if (bookid) {
+            fetchBook();
+        }
+    }, [bookid]);
 
 
     if (loading) {
@@ -56,6 +64,7 @@ const Page = () => {
     if (!book) {
         return <p>Book not found.</p>;
     }
+    
     return (
         <div className={styles.main}>
             <Navbar />
@@ -77,7 +86,6 @@ const Page = () => {
                         onClick={() => {
                             // add payment check here
 
-
                             // assuming already paid
                             router.push(`/read/${bookid}`)
                         }}
@@ -94,4 +102,3 @@ const Page = () => {
 
 
 export default Page
-
