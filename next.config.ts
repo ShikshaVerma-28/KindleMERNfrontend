@@ -12,7 +12,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["m.media-amazon.com","covers.openlibrary.org"],
+    domains: ["m.media-amazon.com",
+              "covers.openlibrary.org",
+              "picsum.photos",
+              "images-na.ssl-images-amazon.com",
+              "firebasestorage.googleapis.com"],
   },
   webpack(config, { isServer }) {
     if (!isServer) {
