@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import React, { useEffect, useState } from "react";
 import styles from "./KindleLibrary.module.css";
 import { FaBookOpen } from "react-icons/fa";
-import Image from 'next/image'
+// import Image from 'next/image'
 import { FaChevronRight, FaChevronDown } from "react-icons/fa6";
 
 import { MdBook } from "react-icons/md";
@@ -101,7 +101,7 @@ const Page = () => {
                                 key={book._id}
                                 className={styles.bookItem}
                             >
-                                <Image
+                                <img
                                     src={book.image}
                                     alt={book.title}
                                     className={styles.bookImage}
@@ -119,5 +119,6 @@ const Page = () => {
     )
 
 }
+
 
 export default Page;
